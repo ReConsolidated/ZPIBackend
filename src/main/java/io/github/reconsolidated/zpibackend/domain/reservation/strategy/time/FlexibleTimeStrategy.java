@@ -80,6 +80,7 @@ public interface FlexibleTimeStrategy {
                         allSubItems.size(),
                         allSubItems));
             }
+            prev = scheduleSlots.get(i);
         }
         return scheduleSlots
                 .stream()

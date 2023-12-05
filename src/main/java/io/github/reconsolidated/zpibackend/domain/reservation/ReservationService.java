@@ -225,6 +225,15 @@ public class ReservationService {
         reservationRepository.delete(reservation);
     }
 
+    public void deleteReservationTotal(AppUser appUser, Long reservationId) {
+        Reservation reservation = reservationRepository.findById(reservationId).orElseThrow();
+        Item item = reservation.getItem();
+        if (!appUser.getId().equals(item.getStore().getOwnerAppUserId())) {
+            throw new IllegalArgumentException("Only owners of store can delete!");
+        }
+        reservationRepository.delete(reservation);
+    }
+
     public void deleteReservation(AppUser appUser, Long reservationId) {
 
         Reservation reservation = reservationRepository.findById(reservationId).orElseThrow();

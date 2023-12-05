@@ -44,4 +44,10 @@ public class StoreController {
                 .map(store -> new StoreNameDto(store.getStoreConfig()))
                 .toList());
     }
+
+    @DeleteMapping("/{storeName}")
+    public ResponseEntity<?> deleteStore(@CurrentUser AppUser currentUser, @PathVariable String storeName) {
+        storeService.deleteStore(currentUser, storeName);
+        return ResponseEntity.ok(true);
+    }
 }

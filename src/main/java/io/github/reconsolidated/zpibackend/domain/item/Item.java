@@ -47,6 +47,7 @@ public class Item {
     @OnDelete(action = OnDeleteAction.CASCADE)
     @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
     private Schedule initialSchedule = new Schedule(this, new ArrayList<>());
+    @OrderBy("id ASC")
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "item", orphanRemoval = true)
     private List<Parameter> customAttributeList;
     @Builder.Default
